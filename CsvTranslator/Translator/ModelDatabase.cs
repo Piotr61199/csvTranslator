@@ -1,5 +1,8 @@
 ﻿namespace Translator
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TextModel
     {
         public int IdText { get; set; }
@@ -17,6 +20,10 @@
         public string Language8 { get; set; }
         public string Language9 { get; set; }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class FileModel
     {
         public int IdFile { get; set; }
@@ -31,6 +38,10 @@
             }
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class LanguageModel
     {
         public int Code { get; set; }

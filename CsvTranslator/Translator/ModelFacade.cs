@@ -7,11 +7,21 @@ using System.Windows.Forms;
 
 namespace Translator
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ModelFacade
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly SqliteDataAccess sqliteDataAccess = new SqliteDataAccess();
         private CsvDataHandling csvDataHandling = new CsvDataHandling();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
         public void InitDataGridView(DataGridView dataGridView)
         {
             for (int i = 0; i < dataGridView.Columns.Count; i++)
@@ -37,6 +47,10 @@ namespace Translator
             dataGridView.Columns[13].HeaderCell.Value = "Language9";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
         public void InitHeadersGridView(DataGridView dataGridView)
         {
             for (int i = 0; i < dataGridView.Columns.Count; i++)
@@ -53,6 +67,10 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
         public void InitializeDataGridView(DataGridView dataGridView)
         {
             dataGridView.AllowUserToAddRows = false;
@@ -76,6 +94,10 @@ namespace Translator
             dataGridView.DefaultCellStyle.SelectionBackColor = Color.Gray;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public OpenFileDialog OpenFileDialogMultiselect()
         {
             var openFileDialog = new OpenFileDialog();
@@ -89,6 +111,11 @@ namespace Translator
             return openFileDialog;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="listText"></param>
         public void ShowTextListOnDGV(DataGridView dataGridView, List<TextModel> listText)
         {
             listText = sqliteDataAccess.GetTextTableAll();
@@ -96,23 +123,40 @@ namespace Translator
             InitHeadersGridView(dataGridView);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
         public void SaveDGVToDB(DataGridView dataGridView)
         {
             DataTable dataTable = new CsvDataHandling().GetDataTableFromDataGrid(dataGridView);
             sqliteDataAccess.UpdateSingleText(dataTable);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
         public void ClearTextFromDB(DataGridView dataGridView)
         {
             sqliteDataAccess.ClearTextTable();
             InitDataGridView(dataGridView);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void ClearFileFromDB()
         {
             sqliteDataAccess.ClearFileTable();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="listText"></param>
+        /// <param name="listFile"></param>
         public void SaveTextToDB(DataGridView dataGridView, List<TextModel> listText, List<FileModel> listFile)
         {
             listFile = sqliteDataAccess.GetFileTableAll();
@@ -146,6 +190,9 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void SaveTextToCsv()
         {
             List<FileModel> listFile = sqliteDataAccess.GetFileTableAll();
@@ -157,6 +204,10 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="openfileDialog"></param>
         public void SelectFiles(OpenFileDialog openfileDialog)
         {
             FileModel fileModel = new FileModel();

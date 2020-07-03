@@ -8,14 +8,26 @@ using System.Linq;
 
 namespace Translator
 {
+    /// <summary>
+    /// SQL Lite connection class.
+    /// The class contains all the necessary methods to communicate with the integrated database.
+    /// </summary>
     internal class SqliteDataAccess
     {
-
+        /// <summary>
+        /// A method that reads a pre-configured global database access path.
+        /// </summary>
+        /// <param name="id">ID numer of connection string.</param>
+        /// <returns></returns>
         private string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<TextModel> GetTextTableAll()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -25,6 +37,12 @@ namespace Translator
                 return output.ToList();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="IdFile"></param>
+        /// <returns></returns>
         public List<TextModel> GetTextTableByIdFile(int IdFile)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -34,6 +52,10 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<FileModel> GetFileTableAll()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -43,6 +65,12 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public int GetFileId(string path, string name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -56,6 +84,11 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <returns></returns>
         public int GetLanguageCode(string columnName)
         {
             if (columnName.Contains("Language"))
@@ -112,6 +145,12 @@ namespace Translator
             }
             return 0;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public string GetLanguageName(int code)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -126,6 +165,9 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void ClearTextTable()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -134,6 +176,9 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void ClearFileTable()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -142,6 +187,10 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="translation"></param>
         public void PutSingleFile(FileModel translation)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -150,6 +199,10 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="translation"></param>
         public void PutSingleText(TextModel translation)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -161,6 +214,10 @@ namespace Translator
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
         public void UpdateSingleText(DataTable table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))

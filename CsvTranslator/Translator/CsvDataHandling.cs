@@ -7,8 +7,18 @@ using System.Windows.Forms;
 
 namespace Translator
 {
-    internal class CsvDataHandling
+    /// <summary>
+    /// This class is designed to handle.csv files
+    /// </summary>
+
+    public class CsvDataHandling
     {
+        /// <summary>
+        ///  HaHAHA
+        /// </summary>
+        /// <param name="dataGridView">gsg</param>
+        /// <param name="ignoreHideColumns"></param>
+        /// <returns></returns>
         public DataTable GetDataTableFromDataGrid(DataGridView dataGridView, bool ignoreHideColumns = false)
         {
             try
@@ -37,6 +47,11 @@ namespace Translator
             catch { return null; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public DataTable GetDataTableFromCsvFile(string filePath)
         {
             DataTable csvData = new DataTable();
@@ -104,6 +119,11 @@ namespace Translator
             return csvData;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="listText"></param>
         public void PutTextListToCsvFile(string filePath, List<TextModel> listText)
         {
             if (File.Exists(filePath))
