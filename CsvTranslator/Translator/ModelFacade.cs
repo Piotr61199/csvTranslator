@@ -170,7 +170,7 @@ namespace Translator
                 foreach (DataRow row in dataTable.Rows)
                 {
                     TextModel text = new TextModel();
-                    text.IdFile = sqliteDataAccess.GetFileId(file.Path, file.Name);
+                    text.IdFile = sqliteDataAccess.GetFileId(file.Name);
                     text.RowNum = numRow;
                     text.ColumnName = row.ItemArray[0].ToString();
                     text.PrimaryLanguage = row.ItemArray[1].ToString();

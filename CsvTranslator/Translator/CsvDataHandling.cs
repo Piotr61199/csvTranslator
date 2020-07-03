@@ -8,17 +8,18 @@ using System.Windows.Forms;
 namespace Translator
 {
     /// <summary>
-    /// This class is designed to handle.csv files
+    /// CSV data handling class.
+    /// This class is designed to handle .csv files. File extraction, conversion, saving to file.
     /// </summary>
 
     public class CsvDataHandling
     {
         /// <summary>
-        ///  HaHAHA
+        /// The method obtains data from the DataGridView object and converts it to the DataTable format.
         /// </summary>
-        /// <param name="dataGridView">gsg</param>
-        /// <param name="ignoreHideColumns"></param>
-        /// <returns></returns>
+        /// <param name="dataGridView">Data grid view from the graphical interface.</param>
+        /// <param name="ignoreHideColumns">Allows you to ignore hidden columns in the table.</param>
+        /// <returns>Data table filled with data.</returns>
         public DataTable GetDataTableFromDataGrid(DataGridView dataGridView, bool ignoreHideColumns = false)
         {
             try
@@ -48,19 +49,20 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// The method obtains data from a.csv file, divides them into columns and rows, and finally saves them in DataTable format.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns></returns>
+        /// <param name="filePath">Path of file to be read.</param>
+        /// <returns>Data table content.</returns>
         public DataTable GetDataTableFromCsvFile(string filePath)
         {
             DataTable csvData = new DataTable();
             bool firstRow = false;
+            //Check if path still exist.
             if (File.Exists(filePath))
             {
                 try
                 {
-                    if (filePath.ToUpper().EndsWith(".CSV"))
+                     if (filePath.ToUpper().EndsWith(".CSV"))
                     {
                         for (int i = 0; i < 11; i++)
                         {
@@ -120,12 +122,13 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that saves all retrieved rows from the database in list format, saving them back to the original file.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="listText"></param>
+        /// <param name="filePath">Oriinal file path</param>
+        /// <param name="listText">List text to be save back.</param>
         public void PutTextListToCsvFile(string filePath, List<TextModel> listText)
         {
+            //Check if path still exist.
             if (File.Exists(filePath))
             {
                 string[] newLines = new string[listText.Count];
@@ -160,6 +163,7 @@ namespace Translator
                         if (text.Language9 != null && text.Language9 != "")
                             languageNumber = 11;
                     }
+                    //Compone file row
                     if (text.RowNum > 0 && languageNumber != 0)
                     {
                         if (languageNumber >= 1)
@@ -201,6 +205,7 @@ namespace Translator
                         string lineToWrite = null;
                         foreach (string line in linesReaded)
                         {
+                            //Find first row before overwriting
                             if (firstRow)
                             {
                                 lineToWrite = newLines[currentRow];

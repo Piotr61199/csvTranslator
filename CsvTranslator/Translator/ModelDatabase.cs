@@ -1,7 +1,7 @@
 ﻿namespace Translator
 {
     /// <summary>
-    /// 
+    /// Text model compatible with the database.
     /// </summary>
     public class TextModel
     {
@@ -22,7 +22,7 @@
     }
 
     /// <summary>
-    /// 
+    /// File model compatible with the database.
     /// </summary>
     public class FileModel
     {
@@ -40,7 +40,7 @@
     }
 
     /// <summary>
-    /// 
+    /// Language model compatible with the database.
     /// </summary>
     public class LanguageModel
     {

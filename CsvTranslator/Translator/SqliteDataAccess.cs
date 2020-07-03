@@ -18,16 +18,16 @@ namespace Translator
         /// A method that reads a pre-configured global database access path.
         /// </summary>
         /// <param name="id">ID numer of connection string.</param>
-        /// <returns></returns>
+        /// <returns>Default connection path</returns>
         private string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
         /// <summary>
-        /// 
+        /// A method that reads the entire TextTable table from the database and converts it to a list of objects.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of all text in data base</returns>
         public List<TextModel> GetTextTableAll()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -39,10 +39,10 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// The method reads the TextTable table from a database for one document, converts the obtained data into a list of objects.
         /// </summary>
-        /// <param name="IdFile"></param>
-        /// <returns></returns>
+        /// <param name="IdFile">File ID for which texts are searched.</param>
+        /// <returns>List containing all text rom one file</returns>
         public List<TextModel> GetTextTableByIdFile(int IdFile)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -53,9 +53,9 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that reads the entire FileTable table from the database and converts it to a list of objects.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of all files in data base</returns>
         public List<FileModel> GetFileTableAll()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -66,12 +66,11 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that returns IdFile based on the file name.
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public int GetFileId(string path, string name)
+        /// <param name="name">The name of the file for which IdFile is searched.</param>
+        /// <returns>Number ID of searched file.</returns>
+        public int GetFileId(string name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -85,10 +84,10 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that returns language CODE from database. Compares existing columns with values in the database.
         /// </summary>
-        /// <param name="columnName"></param>
-        /// <returns></returns>
+        /// <param name="columnName">Header of column to compare.</param>
+        /// <returns>Code of language used in specific file.</returns>
         public int GetLanguageCode(string columnName)
         {
             if (columnName.Contains("Language"))
@@ -100,6 +99,7 @@ namespace Translator
                     listText = output.ToList();
                     foreach (TextModel text in listText)
                     {
+                        //Find correlation with header
                         if (columnName.Equals("PrimaryLanguage") && text.PrimaryLanguage != null && text.PrimaryLanguage != "")
                         {
                             return Int32.Parse(text.PrimaryLanguage);
@@ -147,10 +147,10 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that returns language name from database. The code is searched in the database in the LangTable table.
         /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
+        /// <param name="code">Language code to be find.</param>
+        /// <returns>Name of language in string format.</returns>
         public string GetLanguageName(int code)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -166,7 +166,7 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// TextTable table cleanup method. Deletes the contents of the table in the database.
         /// </summary>
         public void ClearTextTable()
         {
@@ -177,7 +177,7 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// FileTable table cleanup method. Deletes the contents of the table in the database.
         /// </summary>
         public void ClearFileTable()
         {
@@ -188,9 +188,9 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that adds a single record to the database. The record contains information about one .csv file.
         /// </summary>
-        /// <param name="translation"></param>
+        /// <param name="translation">Data model saved to the database.</param>
         public void PutSingleFile(FileModel translation)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -200,9 +200,9 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that adds a single record to the database. The record contains information about the readed line from the .csv file.
         /// </summary>
-        /// <param name="translation"></param>
+        /// <param name="translation">Data model saved to the database.</param>
         public void PutSingleText(TextModel translation)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -215,9 +215,10 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// The method saves the user's changes. Changes from the GUI table are saved record by record into the database. 
+        /// New values overwrite old ones.
         /// </summary>
-        /// <param name="table"></param>
+        /// <param name="table">Table content from GUI</param>
         public void UpdateSingleText(DataTable table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -239,10 +240,11 @@ namespace Translator
 
                     if (translation.IdText != 0)
                     {
+                        //First update primary language
                         cnn.Execute("update TextTable SET " +
                         "PrimaryLanguage= '" + translation.PrimaryLanguage +
                         "' WHERE IdText= '" + translation.IdText + "'");
-
+                        //When primary language is updated, update rest of table
                         cnn.Execute("update TextTable SET " +
                         "PrimaryLanguage= '" + translation.PrimaryLanguage +
                         "', Language1= '" + translation.Language1 +
