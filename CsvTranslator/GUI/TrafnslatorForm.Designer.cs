@@ -84,6 +84,7 @@
             this.btnSaveBackToCsv.TabIndex = 27;
             this.toolTip1.SetToolTip(this.btnSaveBackToCsv, "Save back .csv files");
             this.btnSaveBackToCsv.UseVisualStyleBackColor = true;
+            this.btnSaveBackToCsv.Click += new System.EventHandler(this.btnSaveBackToCsv_Click);
             // 
             // btnImportNewFiles
             // 
@@ -94,6 +95,7 @@
             this.btnImportNewFiles.TabIndex = 26;
             this.toolTip1.SetToolTip(this.btnImportNewFiles, "Import new .csv files");
             this.btnImportNewFiles.UseVisualStyleBackColor = true;
+            this.btnImportNewFiles.Click += new System.EventHandler(this.btnImportNewFile_Click);
             // 
             // btnClearTable
             // 
@@ -104,6 +106,7 @@
             this.btnClearTable.TabIndex = 25;
             this.toolTip1.SetToolTip(this.btnClearTable, "Clear table");
             this.btnClearTable.UseVisualStyleBackColor = true;
+            this.btnClearTable.Click += new System.EventHandler(this.btnClearTable_Click);
             // 
             // btnSaveProgress
             // 
@@ -114,6 +117,7 @@
             this.btnSaveProgress.TabIndex = 24;
             this.toolTip1.SetToolTip(this.btnSaveProgress, "Save progress");
             this.btnSaveProgress.UseVisualStyleBackColor = true;
+            this.btnSaveProgress.Click += new System.EventHandler(this.btnSaveProgress_Click);
             // 
             // TrafnslatorForm
             // 
