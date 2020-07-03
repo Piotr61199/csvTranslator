@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CsvTranslator
 {
-    public partial class Form1 : Form
+    public partial class TrafnslatorForm : Form
     {
-        public Form1()
+        public TrafnslatorForm()
         {
             InitializeComponent();
         }
