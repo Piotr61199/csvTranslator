@@ -44,7 +44,7 @@ namespace CsvTranslator
                 {
                     GraphicUserInterface.SelectFiles(openfileDialog);
                 }
-                GraphicUserInterface.SaveTextToDB(dataGridView, listText, listFile);
+                GraphicUserInterface.SaveTextToDB(listFile);
                 GraphicUserInterface.ShowTextListOnDGV(dataGridView, listText);
             }
             catch (Exception ex)

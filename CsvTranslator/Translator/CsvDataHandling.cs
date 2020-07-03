@@ -12,7 +12,7 @@ namespace Translator
     /// This class is designed to handle .csv files. File extraction, conversion, saving to file.
     /// </summary>
 
-    public class CsvDataHandling
+    internal class CsvDataHandling
     {
         /// <summary>
         /// The method obtains data from the DataGridView object and converts it to the DataTable format.

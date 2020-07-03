@@ -8,20 +8,20 @@ using System.Windows.Forms;
 namespace Translator
 {
     /// <summary>
-    /// 
+    /// A class that connects the graphical interface with the logical part of the application.
     /// </summary>
     public class ModelFacade
     {
         /// <summary>
-        /// 
+        /// Instances of the classes used.
         /// </summary>
         private readonly SqliteDataAccess sqliteDataAccess = new SqliteDataAccess();
         private CsvDataHandling csvDataHandling = new CsvDataHandling();
 
         /// <summary>
-        /// 
+        /// Method to initialize the DataGridView columns.
         /// </summary>
-        /// <param name="dataGridView"></param>
+        /// <param name="dataGridView">Data grid view to be intialize.</param>
         public void InitDataGridView(DataGridView dataGridView)
         {
             for (int i = 0; i < dataGridView.Columns.Count; i++)
@@ -48,9 +48,9 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// Method to initialize the DataGridView headers.
         /// </summary>
-        /// <param name="dataGridView"></param>
+        /// <param name="dataGridView">Data grid view to be intialize.</param>
         public void InitHeadersGridView(DataGridView dataGridView)
         {
             for (int i = 0; i < dataGridView.Columns.Count; i++)
@@ -68,9 +68,9 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// Method to initialize the DataGridView style.
         /// </summary>
-        /// <param name="dataGridView"></param>
+        /// <param name="dataGridView">Data grid view to be intialize.</param>
         public void InitializeDataGridView(DataGridView dataGridView)
         {
             dataGridView.AllowUserToAddRows = false;
@@ -95,9 +95,9 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// The method that opens the selection window with the method of selecting multiple files.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Open dialog window</returns>
         public OpenFileDialog OpenFileDialogMultiselect()
         {
             var openFileDialog = new OpenFileDialog();
@@ -112,10 +112,12 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// The method displays the extracted list with the text in the DataGridView object.
         /// </summary>
-        /// <param name="dataGridView"></param>
-        /// <param name="listText"></param>
+        /// <param name="dataGridView">Data grid view in which the data are displayed.</param>
+        /// <seealso cref="SqliteDataAccess.sqliteDataAccess"/>
+        /// <seealso cref="ModelFacade.InitHeadersGridView"/>
+        /// <param name="listText">Source text list.</param>
         public void ShowTextListOnDGV(DataGridView dataGridView, List<TextModel> listText)
         {
             listText = sqliteDataAccess.GetTextTableAll();
@@ -124,9 +126,11 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// The method saves the changes from the user table to the database. The changes are saved.
         /// </summary>
         /// <param name="dataGridView"></param>
+        /// <seealso cref="CsvDataHandling.GetDataTableFromDataGrid"/>
+        /// <seealso cref="SqliteDataAccess.UpdateSingleText"/>
         public void SaveDGVToDB(DataGridView dataGridView)
         {
             DataTable dataTable = new CsvDataHandling().GetDataTableFromDataGrid(dataGridView);
@@ -134,9 +138,11 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that cleans the contents of the TextTable table in the database. Finally, reinitialize user table.
         /// </summary>
-        /// <param name="dataGridView"></param>
+        /// <param name="dataGridView">User table. GUI data grid view.</param>
+        /// <seealso cref="SqliteDataAccess.ClearTextTable"/>
+        /// <seealso cref="ModelFacade.InitDataGridView"/>
         public void ClearTextFromDB(DataGridView dataGridView)
         {
             sqliteDataAccess.ClearTextTable();
@@ -144,20 +150,24 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// A method that cleans the contents of the FileTable table in the database.
         /// </summary>
+        /// <seealso cref="SqliteDataAccess.ClearFileTable"/>
         public void ClearFileFromDB()
         {
             sqliteDataAccess.ClearFileTable();
         }
 
         /// <summary>
-        /// 
+        /// A method of searching the database for saved file paths. After searching for the path list, 
+        /// it opens the file by file and saves its contents to the database as a TextTable table.
         /// </summary>
-        /// <param name="dataGridView"></param>
-        /// <param name="listText"></param>
-        /// <param name="listFile"></param>
-        public void SaveTextToDB(DataGridView dataGridView, List<TextModel> listText, List<FileModel> listFile)
+        /// <param name="listFile">File list containing origin paths.</param>
+        /// <seealso cref="SqliteDataAccess.GetFileTableAll"/>
+        /// <seealso cref="SqliteDataAccess.GetFileId"/>
+        /// <seealso cref="SqliteDataAccess.PutSingleText"/>
+        /// <seealso cref="CsvDataHandling.GetDataTableFromCsvFile"/>
+        public void SaveTextToDB(List<FileModel> listFile)
         {
             listFile = sqliteDataAccess.GetFileTableAll();
 
@@ -191,8 +201,11 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// he method saves the changes in the database and finally to .csv files.
         /// </summary>
+        /// <seealso cref="SqliteDataAccess.GetFileTableAll"/>
+        /// <seealso cref="SqliteDataAccess.GetTextTableByIdFile"/>
+        /// <seealso cref="CsvDataHandling.PutTextListToCsvFile"/>
         public void SaveTextToCsv()
         {
             List<FileModel> listFile = sqliteDataAccess.GetFileTableAll();
@@ -205,9 +218,10 @@ namespace Translator
         }
 
         /// <summary>
-        /// 
+        /// The method of selecting working files.
         /// </summary>
-        /// <param name="openfileDialog"></param>
+        /// <param name="openfileDialog">Dialog window.</param>
+        /// <seealso cref="SqliteDataAccess.PutSingleFile"/>
         public void SelectFiles(OpenFileDialog openfileDialog)
         {
             FileModel fileModel = new FileModel();
