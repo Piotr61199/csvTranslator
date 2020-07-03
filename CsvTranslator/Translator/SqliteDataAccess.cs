@@ -12,7 +12,7 @@ namespace Translator
     /// SQL Lite connection class.
     /// The class contains all the necessary methods to communicate with the integrated database.
     /// </summary>
-    internal class SqliteDataAccess
+    public class SqliteDataAccess
     {
         /// <summary>
         /// A method that reads a pre-configured global database access path.
@@ -100,43 +100,55 @@ namespace Translator
                     foreach (TextModel text in listText)
                     {
                         //Find correlation with header
-                        if (columnName.Equals("PrimaryLanguage") && text.PrimaryLanguage != null && text.PrimaryLanguage != "")
+                        bool isNumber = false;
+                        int code = 0;
+                        isNumber = int.TryParse(text.PrimaryLanguage, out code);
+                        if (columnName.Equals("PrimaryLanguage") && isNumber)
                         {
                             return Int32.Parse(text.PrimaryLanguage);
                         }
-                        if (columnName.Equals("Language1") && text.Language1 != null && text.Language1 != "")
+                        isNumber = int.TryParse(text.Language1, out code);
+                        if (columnName.Equals("Language1") && isNumber)
                         {
                             return Int32.Parse(text.Language1);
                         }
-                        if (columnName.Equals("Language2") && text.Language2 != null && text.Language2 != "")
+                        isNumber = int.TryParse(text.Language2, out code);
+                        if (columnName.Equals("Language2") && isNumber)
                         {
                             return Int32.Parse(text.Language2);
                         }
-                        if (columnName.Equals("Language3") && text.Language3 != null && text.Language3 != "")
+                        isNumber = int.TryParse(text.Language3, out code);
+                        if (columnName.Equals("Language3") && isNumber)
                         {
                             return Int32.Parse(text.Language3);
                         }
-                        if (columnName.Equals("Language4") && text.Language4 != null && text.Language4 != "")
+                        isNumber = int.TryParse(text.Language4, out code);
+                        if (columnName.Equals("Language4") && isNumber)
                         {
                             return Int32.Parse(text.Language4);
                         }
-                        if (columnName.Equals("Language5") && text.Language5 != null && text.Language5 != "")
+                        isNumber = int.TryParse(text.Language5, out code);
+                        if (columnName.Equals("Language5") && isNumber)
                         {
                             return Int32.Parse(text.Language5);
                         }
-                        if (columnName.Equals("Language6") && text.Language6 != null && text.Language6 != "")
+                        isNumber = int.TryParse(text.Language7, out code);
+                        if (columnName.Equals("Language6") && isNumber)
                         {
                             return Int32.Parse(text.Language6);
                         }
-                        if (columnName.Equals("Language7") && text.Language7 != null && text.Language7 != "")
+                        isNumber = int.TryParse(text.Language7, out code);
+                        if (columnName.Equals("Language7") && isNumber)
                         {
                             return Int32.Parse(text.Language7);
                         }
-                        if (columnName.Equals("Language8") && text.Language8 != null && text.Language8 != "")
+                        isNumber = int.TryParse(text.Language8, out code);
+                        if (columnName.Equals("Language8") && isNumber)
                         {
                             return Int32.Parse(text.Language8);
                         }
-                        if (columnName.Equals("Language9") && text.Language2 != null && text.Language9 != "")
+                        isNumber = int.TryParse(text.Language9, out code);
+                        if (columnName.Equals("Language9") && isNumber)
                         {
                             return Int32.Parse(text.Language9);
                         }

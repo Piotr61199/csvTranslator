@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Translator
@@ -12,7 +13,7 @@ namespace Translator
     /// This class is designed to handle .csv files. File extraction, conversion, saving to file.
     /// </summary>
 
-    internal class CsvDataHandling
+    public class CsvDataHandling
     {
         /// <summary>
         /// The method obtains data from the DataGridView object and converts it to the DataTable format.
@@ -49,6 +50,38 @@ namespace Translator
         }
 
         /// <summary>
+        /// A method for finding first valid row in text file. "Language" word is the key.
+        /// </summary>
+        /// <param name="fieldColumns">String splited where the key is searched.</param>
+        /// <param name="csvData">Datatable for row adding.</param>
+        /// <returns></returns>
+        public bool FindFirstRow(string[] fieldColumns, DataTable csvData)
+        {
+            foreach (string column in fieldColumns)
+            {
+                if (column.Equals("Language"))
+                {
+                    csvData.Rows.Add(fieldColumns);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool FindFirstRowTest(string[] fieldColumns/*, DataTable csvData*/)
+        {
+            foreach (string column in fieldColumns)
+            {
+                if (column.Equals("Language"))
+                {
+                    //csvData.Rows.Add(fieldColumns);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// The method obtains data from a.csv file, divides them into columns and rows, and finally saves them in DataTable format.
         /// </summary>
         /// <param name="filePath">Path of file to be read.</param>
@@ -80,14 +113,7 @@ namespace Translator
                                 string[] fieldColumns = csvReader.ReadFields();
                                 if (firstRow == false)
                                 {
-                                    foreach (string column in fieldColumns)
-                                    {
-                                        if (column.Equals("Language"))
-                                        {
-                                            firstRow = true;
-                                            csvData.Rows.Add(fieldColumns);
-                                        }
-                                    }
+                                    firstRow = FindFirstRow(fieldColumns, csvData);
                                 }
                                 else
                                 {
@@ -122,6 +148,40 @@ namespace Translator
         }
 
         /// <summary>
+        /// A method to count number of configurated languages.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Number of languages</returns>
+        public int CounConfigLanguages(TextModel text)
+        {
+            int Count = 0;
+            if (text.ColumnName != null && text.ColumnName != "")
+                Count = 1;
+            if (text.PrimaryLanguage != null && text.PrimaryLanguage != "")
+                Count = 2;
+            if (text.Language1 != null && text.Language1 != "")
+                Count = 3;
+            if (text.Language2 != null && text.Language2 != "")
+                Count = 4;
+            if (text.Language3 != null && text.Language3 != "")
+                Count = 5;
+            if (text.Language4 != null && text.Language4 != "")
+                Count = 6;
+            if (text.Language5 != null && text.Language5 != "")
+                Count = 7;
+            if (text.Language6 != null && text.Language6 != "")
+                Count = 8;
+            if (text.Language7 != null && text.Language7 != "")
+                Count = 9;
+            if (text.Language8 != null && text.Language8 != "")
+                Count = 10;
+            if (text.Language9 != null && text.Language9 != "")
+                Count = 11;
+
+            return Count;
+        }
+
+        /// <summary>
         /// A method that saves all retrieved rows from the database in list format, saving them back to the original file.
         /// </summary>
         /// <param name="filePath">Oriinal file path</param>
@@ -140,28 +200,7 @@ namespace Translator
                     ///Count number of conigurated language
                     if (text.RowNum == 0 && languageNumber == 0)
                     {
-                        if (text.ColumnName != null && text.ColumnName != "")
-                            languageNumber = 1;
-                        if (text.PrimaryLanguage != null && text.PrimaryLanguage != "")
-                            languageNumber = 2;
-                        if (text.Language1 != null && text.Language1 != "")
-                            languageNumber = 3;
-                        if (text.Language2 != null && text.Language2 != "")
-                            languageNumber = 4;
-                        if (text.Language3 != null && text.Language3 != "")
-                            languageNumber = 5;
-                        if (text.Language4 != null && text.Language4 != "")
-                            languageNumber = 6;
-                        if (text.Language5 != null && text.Language5 != "")
-                            languageNumber = 7;
-                        if (text.Language6 != null && text.Language6 != "")
-                            languageNumber = 8;
-                        if (text.Language7 != null && text.Language7 != "")
-                            languageNumber = 9;
-                        if (text.Language8 != null && text.Language8 != "")
-                            languageNumber = 10;
-                        if (text.Language9 != null && text.Language9 != "")
-                            languageNumber = 11;
+                        languageNumber = CounConfigLanguages(text);
                     }
                     //Compone file row
                     if (text.RowNum > 0 && languageNumber != 0)
