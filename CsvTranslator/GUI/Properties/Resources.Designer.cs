@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GUI.Properties {
+namespace CsvTranslator.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace GUI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GUI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CsvTranslator.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -59,110 +59,82 @@ namespace GUI.Properties {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons_csvfile_
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap icons_csvfile_ {
+            get {
                 object obj = ResourceManager.GetObject("icons-csvfile-", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons_openedfolder
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap icons_openedfolder {
+            get {
                 object obj = ResourceManager.GetObject("icons-openedfolder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons_refresh
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap icons_refresh {
+            get {
                 object obj = ResourceManager.GetObject("icons-refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons_savecsv
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap icons_savecsv {
+            get {
                 object obj = ResourceManager.GetObject("icons-savecsv", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons_savecsv1
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("icons-savecsv1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons_saveproggress
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap icons_saveproggress {
+            get {
                 object obj = ResourceManager.GetObject("icons-saveproggress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons_selectfiles
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap icons_selectfiles {
+            get {
                 object obj = ResourceManager.GetObject("icons-selectfiles", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons_translate64
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap icons_translate {
+            get {
+                object obj = ResourceManager.GetObject("icons-translate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons_translate64 {
+            get {
                 object obj = ResourceManager.GetObject("icons-translate64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
