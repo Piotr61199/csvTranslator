@@ -13,11 +13,11 @@ namespace TranslatorTest2
     {
         private CsvDataHandling csvDataHandling = new CsvDataHandling();
         [TestMethod]
-        public void FindFirstRowTest()
+        public void CounConfigLanguagesTest()
         {
             // arrange
             TextModel text = new TextModel();
-            int expected = 4;
+            int expected = 6;
             text.IdFile = 151;
             text.IdText = 16555;
             text.RowNum = 0;
@@ -25,8 +25,8 @@ namespace TranslatorTest2
             text.PrimaryLanguage = "1033";
             text.Language1 = "1045";
             text.Language2 = "2060";
-            text.Language3 = "";
-            text.Language4 = "";
+            text.Language3 = "1032";
+            text.Language4 = "4521";
             text.Language5 = "";
             text.Language6 = "";
             text.Language7 = "";
