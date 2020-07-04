@@ -68,16 +68,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TrafnslatorForm.cs">
+    <Compile Include="TranslatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrafnslatorForm.Designer.cs">
-      <DependentUpon>TrafnslatorForm.cs</DependentUpon>
+    <Compile Include="TranslatorForm.Designer.cs">
+      <DependentUpon>TranslatorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="TrafnslatorForm.resx">
-      <DependentUpon>TrafnslatorForm.cs</DependentUpon>
+    <EmbeddedResource Include="TranslatorForm.resx">
+      <DependentUpon>TranslatorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

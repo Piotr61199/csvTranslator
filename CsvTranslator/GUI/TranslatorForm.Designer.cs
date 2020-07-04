@@ -1,6 +1,6 @@
 ﻿namespace CsvTranslator
 {
-    partial class TrafnslatorForm
+    partial class TranslatorForm
     {
         /// <summary>
         /// Wymagana zmienna projektanta.

@@ -16,7 +16,7 @@ namespace CsvTranslator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TrafnslatorForm());
+            Application.Run(new TranslatorForm());
         }
     }
 }

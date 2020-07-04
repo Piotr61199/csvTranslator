@@ -9,7 +9,7 @@ namespace CsvTranslator
     /// Main Form class. 
     /// Contains all elements and functions of the graphic user interface.
     /// </summary>
-    public partial class TrafnslatorForm : Form
+    public partial class TranslatorForm : Form
     {
         List<TextModel> listText = new List<TextModel>();
         List<FileModel> listFile = new List<FileModel>();
@@ -18,7 +18,7 @@ namespace CsvTranslator
         /// <summary>
         /// GUI initialization method.
         /// </summary>
-        public TrafnslatorForm()
+        public TranslatorForm()
         {
             InitializeComponent();
             GraphicUserInterface.ShowTextListOnDGV(dataGridView, listText);
