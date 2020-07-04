@@ -12,6 +12,7 @@ namespace Translator
     /// CSV data handling class.
     /// This class is designed to handle .csv files. File extraction, conversion, saving to file.
     /// </summary>
+    /// 
 
     public class CsvDataHandling
     {
